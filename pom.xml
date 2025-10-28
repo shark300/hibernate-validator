@@ -219,7 +219,7 @@
             overridden by a CI job of the Checkstyle project so that they can
             check for regressions. Which is obviously good for us, too.
          -->
-        <puppycrawl.checkstyle.version>12.1.0</puppycrawl.checkstyle.version>
+        <puppycrawl.checkstyle.version>12.1.1</puppycrawl.checkstyle.version>
 
         <!-- Asciidoctor -->
 
@@ -227,7 +227,7 @@
         <version.org.hibernate.infra.hibernate-asciidoctor-theme>6.1.0.Final</version.org.hibernate.infra.hibernate-asciidoctor-theme>
         <version.org.hibernate.infra.hibernate-asciidoctor-extensions>3.2.0.Final</version.org.hibernate.infra.hibernate-asciidoctor-extensions>
         <version.org.asciidoctor.asciidoctorj>3.0.0</version.org.asciidoctor.asciidoctorj>
-        <version.org.asciidoctor.asciidoctorj-pdf>2.3.21</version.org.asciidoctor.asciidoctorj-pdf>
+        <version.org.asciidoctor.asciidoctorj-pdf>2.3.23</version.org.asciidoctor.asciidoctorj-pdf>
 
         <!-- Maven plugins versions -->
 
