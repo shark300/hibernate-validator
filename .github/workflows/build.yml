@@ -78,12 +78,12 @@ jobs:
     steps:
       - name: Set up RunsOn
         if: ${{ contains(inputs.initial-build-runs-on, 'runs-on') && github.repository == 'hibernate/hibernate-validator' }}
-        uses: runs-on/action@284bff869d4a825f778ac7c38e50f1e31ef198fd # v2.6.0
+        uses: runs-on/action@13fbb6a39310a0dac9ab4716da2c4e74a3326dfc # v2.7.0
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Set up Java ${{ env.MAVEN_JAVA_VERSION }}
-        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           java-version: ${{ env.MAVEN_JAVA_VERSION }}
           distribution: temurin
@@ -184,7 +184,7 @@ jobs:
       - name: Check that no license header was reintroduced
         run: ./build/ci/check-no-license-headers.sh
       - name: Set up Java ${{ env.MAVEN_JAVA_VERSION }}
-        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           java-version: ${{ env.MAVEN_JAVA_VERSION }}
           distribution: temurin
@@ -250,7 +250,7 @@ jobs:
         run: git config --global core.longpaths true
       - name: Set up RunsOn
         if: ${{ contains(matrix.runs-on || '', 'runs-on') && github.repository == 'hibernate/hibernate-validator' }}
-        uses: runs-on/action@284bff869d4a825f778ac7c38e50f1e31ef198fd # v2.6.0
+        uses: runs-on/action@13fbb6a39310a0dac9ab4716da2c4e74a3326dfc # v2.7.0
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -275,7 +275,7 @@ jobs:
           release: ${{ matrix.java-test-version }}
       - name: Set up test JDK ${{ matrix.java-test-version }}
         if: ${{ matrix.java-test-version && matrix.java-test-version != env.MAVEN_JAVA_VERSION && matrix.java-test-from != 'jdk.java.net' }}
-        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           java-version: ${{ matrix.java-test-version }}
           distribution: temurin
@@ -283,7 +283,7 @@ jobs:
         if: ${{ matrix.java-test-version && matrix.java-test-version != env.MAVEN_JAVA_VERSION }}
         run: echo "TEST_JDK_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
       - name: Set up Java ${{ env.MAVEN_JAVA_VERSION }}
-        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           java-version: ${{ env.MAVEN_JAVA_VERSION }}
           distribution: temurin
@@ -408,7 +408,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Java ${{ env.MAVEN_JAVA_VERSION }}
-        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           java-version: ${{ env.MAVEN_JAVA_VERSION }}
           distribution: temurin
