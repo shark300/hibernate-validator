@@ -446,3 +446,24 @@ jobs:
             ./**/coverage/jacoco-*.exec
             build/reports/target/site/jacoco-aggregate/jacoco.xml
             build/reports/target/sonar-dependencies/
+
+      # Fork-only experiment. This branch is the PR base; do not change HV-1921.
+      - name: Verify JaCoCo report for experiment
+        if: ${{ github.repository == 'shark300/hibernate-validator' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'sonar-coverage-experiment' && github.event.pull_request.head.repo.full_name == github.repository }}
+        run: test -s build/reports/target/site/jacoco-aggregate/jacoco.xml
+
+      - name: Scan PR coverage with SonarQube Cloud
+        if: ${{ github.repository == 'shark300/hibernate-validator' && github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'sonar-coverage-experiment' && github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: SonarSource/sonarqube-scan-action@59202af334b4ba7b5db01b701b8e79f8b3bef0f4 # v8.5.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >-
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.organization=shark300
+            -Dsonar.projectKey=shark300_hibernate-validator
+            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+            -Dsonar.pullrequest.branch=${{ github.head_ref }}
+            -Dsonar.pullrequest.base=${{ github.base_ref }}
+            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/target/site/jacoco-aggregate/jacoco.xml
+            -Dsonar.java.libraries=build/reports/target/sonar-dependencies/*.jar
